@@ -287,9 +287,9 @@
   })
   .catch(console.error);</code></pre>
 
-        <pre id="tab-content-python" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>import requests
+        <pre id="tab-content-python" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code id="code-sample-python">import requests
 
-url = "https://your-domain.vercel.app/sekolah"
+url = "https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah"
 params = {
     "page": 1,
     "perPage": 5,
@@ -303,8 +303,8 @@ print(f"Total: {data['total_data']}")
 for s in data['dataSekolah']:
     print(f"- {s['npsn']} | {s['sekolah']}")</code></pre>
 
-        <pre id="tab-content-php" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>&lt;?php
-$url = "https://your-domain.vercel.app/sekolah?page=1&perPage=5";
+        <pre id="tab-content-php" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code id="code-sample-php">&lt;?php
+$url = "https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah?page=1&perPage=5";
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 
@@ -314,7 +314,7 @@ foreach ($data['dataSekolah'] as $s) {
 }
 ?&gt;</code></pre>
 
-        <pre id="tab-content-curl" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>curl -X GET "https://your-domain.vercel.app/sekolah?page=1&perPage=5" \
+        <pre id="tab-content-curl" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code id="code-sample-curl">curl -X GET "https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah?page=1&perPage=5" \
      -H "Accept: application/json"</code></pre>
       </div>
     </div>

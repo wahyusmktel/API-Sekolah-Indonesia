@@ -37,9 +37,11 @@ Project ini dilengkapi dengan **dokumentasi interaktif (playground web)**, skrip
 
 ## 🚀 Panduan Penggunaan API
 
-Base URL (setelah di-deploy ke Vercel atau dijalankan lokal):
+Base URL:
 ```bash
-https://your-domain.vercel.app
+https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app
+# atau URL deployment spesifik:
+# https://api-sekolah-indonesia-hv4825eal-wahyusmktels-projects.vercel.app
 # atau http://localhost:5000 (lokal)
 ```
 
@@ -136,7 +138,7 @@ GET /sekolah/detail/20104462
 
 ### JavaScript (Fetch API / Node.js)
 ```javascript
-fetch('https://your-domain.vercel.app/sekolah?page=1&perPage=5')
+fetch('https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah?page=1&perPage=5')
   .then(res => res.json())
   .then(data => {
     console.log('Total:', data.total_data);
@@ -148,7 +150,7 @@ fetch('https://your-domain.vercel.app/sekolah?page=1&perPage=5')
 ```python
 import requests
 
-res = requests.get('https://your-domain.vercel.app/sekolah', params={'jenjang': 'SMK', 'perPage': 5})
+res = requests.get('https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah', params={'jenjang': 'SMK', 'perPage': 5})
 data = res.json()
 
 for s in data['dataSekolah']:
@@ -157,7 +159,7 @@ for s in data['dataSekolah']:
 
 ### cURL
 ```bash
-curl -X GET "https://your-domain.vercel.app/sekolah?page=1&perPage=5"
+curl -X GET "https://api-sekolah-indonesia-wahyusmktels-projects.vercel.app/sekolah?page=1&perPage=5"
 ```
 
 ---
