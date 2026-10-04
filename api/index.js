@@ -68,6 +68,13 @@ function initData() {
 
 // Middleware agar data siap sebelum menangani request
 app.use((req, res, next) => {
+  // Normalisasi jika Vercel rewrite ke /api/index.js atau /api
+  const matched = req.headers['x-matched-path'] || req.headers['x-vercel-matched-path'];
+  if (matched && (req.url.startsWith('/api/index.js') || req.url === '/api')) {
+    const q = req.url.indexOf('?');
+    req.url = matched + (q !== -1 ? req.url.slice(q) : '');
+  }
+
   try {
     initData();
     next();

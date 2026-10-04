@@ -1,9 +1,15 @@
 {
   "version": 2,
   "rewrites": [
-    {
-      "source": "/(sekolah|api|stats|statistik|provinsi|propinsi|kabupaten|kab_kota|kecamatan|kec)(.*)",
-      "destination": "/api/index.js"
-    }
+    { "source": "/sekolah/(.*)", "destination": "/api/sekolah/$1" },
+    { "source": "/sekolah", "destination": "/api/sekolah" },
+    { "source": "/stats", "destination": "/api/stats" },
+    { "source": "/statistik", "destination": "/api/stats" },
+    { "source": "/provinsi", "destination": "/api/provinsi" },
+    { "source": "/propinsi", "destination": "/api/provinsi" },
+    { "source": "/kabupaten", "destination": "/api/kabupaten" },
+    { "source": "/kab_kota", "destination": "/api/kabupaten" },
+    { "source": "/kecamatan", "destination": "/api/kecamatan" },
+    { "source": "/kec", "destination": "/api/kecamatan" }
   ]
 }
