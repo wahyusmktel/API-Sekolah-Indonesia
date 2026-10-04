@@ -1,0 +1,6 @@
+# Berkas yang tidak perlu dibundle ke Serverless Function Vercel
+sekolah_indonesia.sql
+download_schools.js
+.git
+.gitignore
+README.md

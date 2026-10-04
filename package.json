@@ -1,0 +1,25 @@
+{
+  "name": "api-sekolah-indonesia",
+  "version": "2.1.0",
+  "description": "API Data Sekolah Seluruh Indonesia (SD, SMP, SMA, SMK) dengan dokumentasi interaktif dan dukungan Vercel Serverless.",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "api",
+    "sekolah",
+    "indonesia",
+    "npsn",
+    "kemdikbud",
+    "dapodik",
+    "rest-api"
+  ],
+  "author": "wahyusmktel",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/(sekolah|api|stats|statistik|provinsi|propinsi|kabupaten|kab_kota|kecamatan|kec)(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}

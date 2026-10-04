@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Sekolah Indonesia - Dokumentasi & Playground</title>
+  <meta name="description" content="Dokumentasi REST API Data Pokok Sekolah Seluruh Indonesia (SD, SMP, SMA, SMK) dengan 215.373+ data terupdate." />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    pre code {
+      font-family: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Header & Navbar -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-blue-500/20">
+          🇮🇩
+        </div>
+        <div>
+          <span class="font-bold text-lg text-white tracking-tight flex items-center gap-2">
+            API Sekolah Indonesia
+            <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 font-medium">v2.1</span>
+          </span>
+          <p class="text-xs text-slate-400">Database & REST API Sekolah Se-Indonesia</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          215.373 Data Terdaftar
+        </div>
+        <a href="https://github.com/wahyusmktel/API-Sekolah-Indonesia" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-1.5 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold">
+        ⚡ Cepat • Mandiri • Tanpa Rate Limit Ketat
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+        REST API Data Sekolah Seluruh Indonesia
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg">
+        Layanan API publik dan open-source untuk mengakses data sekolah jenjang SD, SMP, SMA, SMK lengkap dengan NPSN, alamat, koordinat, dan wilayah administratif.
+      </p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
+        <p class="text-xs text-slate-400">Total Sekolah</p>
+        <p id="stat-total" class="text-2xl font-bold text-blue-400 mt-1">215.373</p>
+        <span class="text-[10px] text-slate-500">Terverifikasi</span>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
+        <p class="text-xs text-slate-400">Jenjang Didukung</p>
+        <p class="text-2xl font-bold text-indigo-400 mt-1">SD, SMP, SMA, SMK</p>
+        <span class="text-[10px] text-slate-500">+ SLB</span>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
+        <p class="text-xs text-slate-400">Cakupan Provinsi</p>
+        <p id="stat-prov" class="text-2xl font-bold text-emerald-400 mt-1">35</p>
+        <span class="text-[10px] text-slate-500">Seluruh Indonesia</span>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
+        <p class="text-xs text-slate-400">Kabupaten / Kota</p>
+        <p id="stat-kab" class="text-2xl font-bold text-amber-400 mt-1">515</p>
+        <span class="text-[10px] text-slate-500">Wilayah Lengkap</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Playground -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            🚀 Live API Tester & Playground
+          </h2>
+          <p class="text-sm text-slate-400">Pilih salah satu endpoint preset atau ketik query Anda sendiri untuk mencoba langsung.</p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-slate-400 font-medium">Contoh Cepat:</span>
+          <button onclick="setEndpoint('/sekolah?page=1&perPage=5')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">Semua</button>
+          <button onclick="setEndpoint('/sekolah/SMK?page=1&perPage=5')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">SMK</button>
+          <button onclick="setEndpoint('/sekolah/s?sekolah=telkom')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">Cari Telkom</button>
+          <button onclick="setEndpoint('/sekolah?npsn=20106343')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">NPSN</button>
+          <button onclick="setEndpoint('/stats')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">Statistik</button>
+          <button onclick="setEndpoint('/provinsi')" class="preset-btn text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded border border-slate-700">Provinsi</button>
+        </div>
+      </div>
+
+      <!-- URL Input Bar -->
+      <div class="mt-6 flex flex-col sm:flex-row items-stretch gap-3">
+        <div class="flex-1 flex items-center bg-slate-950 border border-slate-700 rounded-xl overflow-hidden focus-within:border-blue-500">
+          <span class="px-3.5 py-2.5 bg-slate-800/80 text-slate-300 text-xs font-mono font-semibold border-r border-slate-700">GET</span>
+          <span id="base-host-label" class="pl-3 text-slate-500 text-sm font-mono hidden md:inline"></span>
+          <input id="api-endpoint-input" type="text" value="/sekolah?page=1&perPage=5"
+                 class="w-full bg-transparent px-3 py-2.5 text-sm text-slate-200 font-mono outline-none"
+                 placeholder="/sekolah?page=1&perPage=5" />
+        </div>
+        <button id="send-request-btn" onclick="executeApiTest()"
+                class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-2.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
+          <svg id="btn-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <span id="btn-text">Kirim Request</span>
+        </button>
+      </div>
+
+      <!-- Live Response Output -->
+      <div class="mt-6 bg-slate-950 border border-slate-800 rounded-xl overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="text-slate-400 font-medium">Response</span>
+            <span id="res-status" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-400">-</span>
+            <span id="res-time" class="text-slate-500 text-[11px]">- ms</span>
+          </div>
+          <button onclick="copyResponseJson()" class="text-slate-400 hover:text-white transition flex items-center gap-1 text-[11px]">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="copy-feedback">Salin JSON</span>
+          </button>
+        </div>
+        <pre class="p-4 overflow-x-auto max-h-[380px] text-xs text-blue-300 font-mono leading-relaxed"><code id="response-content">// Klik 'Kirim Request' atau pilih contoh di atas untuk melihat respon API...</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Documentation -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="border-b border-slate-800 pb-4 mb-8">
+      <h2 class="text-2xl font-bold text-white">📖 Dokumentasi Lengkap Endpoint</h2>
+      <p class="text-slate-400 text-sm mt-1">Daftar semua parameter, format url, dan contoh pemanggilan yang didukung.</p>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Endpoint 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+          <code class="text-white font-mono text-sm sm:text-base font-semibold">/sekolah</code>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-auto">Data Sekolah & Paginasi</span>
+        </div>
+        <p class="text-slate-300 text-sm mt-3">Mengambil data sekolah dengan paginasi dan filter fleksibel.</p>
+        
+        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-4 mb-2">Parameter Query:</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400">
+              <tr>
+                <th class="p-2 rounded-l">Parameter</th>
+                <th class="p-2">Tipe</th>
+                <th class="p-2">Default</th>
+                <th class="p-2 rounded-r">Deskripsi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 font-mono">
+              <tr><td class="p-2 text-blue-400">page</td><td class="p-2">integer</td><td class="p-2">1</td><td class="p-2 text-slate-300 font-sans">Nomor halaman</td></tr>
+              <tr><td class="p-2 text-blue-400">perPage</td><td class="p-2">integer</td><td class="p-2">20</td><td class="p-2 text-slate-300 font-sans">Jumlah data per halaman (maks. 1000)</td></tr>
+              <tr><td class="p-2 text-blue-400">jenjang</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Filter jenjang: SD, SMP, SMA, SMK, SLB</td></tr>
+              <tr><td class="p-2 text-blue-400">status</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Status sekolah: N (Negeri) atau S (Swasta)</td></tr>
+              <tr><td class="p-2 text-blue-400">npsn</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Cari langsung berdasarkan 8 digit NPSN</td></tr>
+              <tr><td class="p-2 text-blue-400">sekolah / q</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Kata kunci pencarian nama sekolah</td></tr>
+              <tr><td class="p-2 text-blue-400">provinsi</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Filter nama provinsi (contoh: "Jawa Barat")</td></tr>
+              <tr><td class="p-2 text-blue-400">kode_prop</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Filter berdasarkan kode provinsi (contoh: "020000")</td></tr>
+              <tr><td class="p-2 text-blue-400">kab_kota</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Filter kabupaten/kota (contoh: "Bandung")</td></tr>
+              <tr><td class="p-2 text-blue-400">kec</td><td class="p-2">string</td><td class="p-2">-</td><td class="p-2 text-slate-300 font-sans">Filter nama kecamatan</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Endpoint 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+          <code class="text-white font-mono text-sm sm:text-base font-semibold">/sekolah/:jenjang</code>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-auto">Shortcut Jenjang</span>
+        </div>
+        <p class="text-slate-300 text-sm mt-3">Mengambil data sekolah berdasarkan jenjang tertentu secara langsung.</p>
+        <p class="text-xs text-slate-400 mt-1">Pilihan jenjang yang didukung: <code class="text-blue-400">sd</code>, <code class="text-blue-400">smp</code>, <code class="text-blue-400">sma</code>, <code class="text-blue-400">smk</code>, <code class="text-blue-400">slb</code>.</p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs font-mono text-slate-300 mt-3">
+          Contoh: GET /sekolah/SMK?page=1&perPage=10&status=N
+        </div>
+      </div>
+
+      <!-- Endpoint 3 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+          <code class="text-white font-mono text-sm sm:text-base font-semibold">/sekolah/s?sekolah={nama}</code>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-auto">Pencarian Nama</span>
+        </div>
+        <p class="text-slate-300 text-sm mt-3">Pencarian data sekolah berdasarkan nama (100% kompatibel dengan API versi terdahulu).</p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs font-mono text-slate-300 mt-3">
+          Contoh: GET /sekolah/s?sekolah=telkom&page=1&perPage=5
+        </div>
+      </div>
+
+      <!-- Endpoint 4 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+          <code class="text-white font-mono text-sm sm:text-base font-semibold">/sekolah/detail/:npsnOrId</code>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-auto">Detail Satuan Sekolah</span>
+        </div>
+        <p class="text-slate-300 text-sm mt-3">Mengambil data spesifik 1 sekolah berdasarkan 8-digit NPSN atau UUID Referensi Dapodik.</p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs font-mono text-slate-300 mt-3">
+          Contoh: GET /sekolah/detail/20106343
+        </div>
+      </div>
+
+      <!-- Endpoint 5 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+          <code class="text-white font-mono text-sm sm:text-base font-semibold">/provinsi, /kabupaten, /kecamatan, /stats</code>
+          <span class="text-xs text-slate-400 hidden sm:inline ml-auto">Master Data & Statistik</span>
+        </div>
+        <p class="text-slate-300 text-sm mt-3">Mendapatkan data wilayah administratif terstandarisasi dan ringkasan kuantitas sekolah.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs font-mono text-slate-300">
+          <div class="bg-slate-950 p-2.5 rounded border border-slate-800">GET /provinsi</div>
+          <div class="bg-slate-950 p-2.5 rounded border border-slate-800">GET /kabupaten?provinsi=Jawa+Barat</div>
+          <div class="bg-slate-950 p-2.5 rounded border border-slate-800">GET /kecamatan?kab_kota=Bogor</div>
+          <div class="bg-slate-950 p-2.5 rounded border border-slate-800">GET /stats</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Code Integration Examples -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-16">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <h2 class="text-xl font-bold text-white mb-2">💻 Contoh Kode Integrasi</h2>
+      <p class="text-slate-400 text-sm mb-6">Contoh pemanggilan di berbagai bahasa pemrograman favorit Anda.</p>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 border-b border-slate-800 pb-3" id="code-tabs">
+        <button onclick="switchTab('js')" id="tab-btn-js" class="tab-active px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-blue-600">JavaScript / Node.js</button>
+        <button onclick="switchTab('python')" id="tab-btn-python" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800">Python</button>
+        <button onclick="switchTab('php')" id="tab-btn-php" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800">PHP</button>
+        <button onclick="switchTab('curl')" id="tab-btn-curl" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800">cURL</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="mt-4">
+        <pre id="tab-content-js" class="bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>fetch('https://' + window.location.host + '/sekolah?page=1&perPage=5')
+  .then(res => res.json())
+  .then(data => {
+    console.log('Total:', data.total_data);
+    console.log('Sekolah:', data.dataSekolah);
+  })
+  .catch(console.error);</code></pre>
+
+        <pre id="tab-content-python" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>import requests
+
+url = "https://your-domain.vercel.app/sekolah"
+params = {
+    "page": 1,
+    "perPage": 5,
+    "jenjang": "SMK"
+}
+
+response = requests.get(url, params=params)
+data = response.json()
+
+print(f"Total: {data['total_data']}")
+for s in data['dataSekolah']:
+    print(f"- {s['npsn']} | {s['sekolah']}")</code></pre>
+
+        <pre id="tab-content-php" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>&lt;?php
+$url = "https://your-domain.vercel.app/sekolah?page=1&perPage=5";
+$response = file_get_contents($url);
+$data = json_decode($response, true);
+
+echo "Total Sekolah: " . $data['total_data'] . PHP_EOL;
+foreach ($data['dataSekolah'] as $s) {
+    echo "- " . $s['npsn'] . " : " . $s['sekolah'] . PHP_EOL;
+}
+?&gt;</code></pre>
+
+        <pre id="tab-content-curl" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 overflow-x-auto font-mono"><code>curl -X GET "https://your-domain.vercel.app/sekolah?page=1&perPage=5" \
+     -H "Accept: application/json"</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 <strong>API Sekolah Indonesia</strong>. Dikelola oleh <a href="https://github.com/wahyusmktel" class="text-blue-400 hover:underline">wahyusmktel</a>.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/wahyusmktel/API-Sekolah-Indonesia" class="hover:text-slate-300">GitHub Repository</a>
+        <span>•</span>
+        <span>Lisensi MIT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Playground & Data Fetching -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('base-host-label').textContent = window.location.origin;
+      loadLiveStats();
+      executeApiTest();
+    });
+
+    function setEndpoint(endpoint) {
+      document.getElementById('api-endpoint-input').value = endpoint;
+      executeApiTest();
+    }
+
+    async function executeApiTest() {
+      const endpoint = document.getElementById('api-endpoint-input').value.trim();
+      const statusEl = document.getElementById('res-status');
+      const timeEl = document.getElementById('res-time');
+      const outputEl = document.getElementById('response-content');
+      const btn = document.getElementById('send-request-btn');
+      const btnText = document.getElementById('btn-text');
+
+      btnText.textContent = 'Memuat...';
+      btn.disabled = true;
+      outputEl.textContent = '// Memanggil API...';
+
+      const startTime = performance.now();
+      try {
+        const res = await fetch(endpoint);
+        const duration = Math.round(performance.now() - startTime);
+        const json = await res.json();
+
+        statusEl.textContent = `${res.status} ${res.statusText || 'OK'}`;
+        statusEl.className = res.ok 
+          ? 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+          : 'px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30';
+        
+        timeEl.textContent = `${duration} ms`;
+        outputEl.textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        statusEl.textContent = 'ERROR';
+        statusEl.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30';
+        timeEl.textContent = '0 ms';
+        outputEl.textContent = `// Error memanggil API:\n${err.message}`;
+      } finally {
+        btnText.textContent = 'Kirim Request';
+        btn.disabled = false;
+      }
+    }
+
+    async function loadLiveStats() {
+      try {
+        const res = await fetch('/stats');
+        if (!res.ok) return;
+        const d = await res.json();
+        if (d.data) {
+          if (d.data.total_data) document.getElementById('stat-total').textContent = d.data.total_data.toLocaleString('id-ID');
+          if (d.data.total_provinsi) document.getElementById('stat-prov').textContent = d.data.total_provinsi.toLocaleString('id-ID');
+          if (d.data.total_kabupaten) document.getElementById('stat-kab').textContent = d.data.total_kabupaten.toLocaleString('id-ID');
+        }
+      } catch (e) {
+        // Abaikan jika offline
+      }
+    }
+
+    function copyResponseJson() {
+      const code = document.getElementById('response-content').textContent;
+      navigator.clipboard.writeText(code);
+      const feedback = document.getElementById('copy-feedback');
+      feedback.textContent = 'Tersalin!';
+      setTimeout(() => feedback.textContent = 'Salin JSON', 2000);
+    }
+
+    function switchTab(lang) {
+      ['js', 'python', 'php', 'curl'].forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const content = document.getElementById(`tab-content-${t}`);
+        if (t === lang) {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-blue-600';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800';
+          content.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
